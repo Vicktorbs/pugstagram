@@ -1,5 +1,12 @@
 <script>
     import Comments from './Comments.svelte'
+
+    export let username;
+    export let location;
+    export let photo;
+    export let postComment;
+    export let comments;
+    export let avatar;
 </script>
 
 <style>
@@ -80,13 +87,13 @@
     .Card-description span {
         font-size: 14px;
     }
-    /* .active-like {
+    .active-like {
         color: #bc1888;
         animation: bounce linear 0.8s;
         animation-iteration-count: 1;
         transform-origin: 20% 20%;
     }
-    .active-bookmark {
+    /* .active-bookmark {
         color: #f09433;
     } */
 
@@ -119,10 +126,10 @@
     <div class="Card-container">
         <div class="Card-header">
             <div class="Card-user">
-                <img src="https://scontent.fmex18-1.fna.fbcdn.net/v/t1.6435-9/131640318_1743620212463980_7669679555384342514_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=vP4ngVdlhvEAX_3qqKL&_nc_ht=scontent.fmex18-1.fna&oh=2c596e2900c636897e0dc2d4b8606249&oe=61D59C54" alt="">
+                <img src={avatar} alt={username}>
                 <h2>
-                    Elmo.pug
-                    <span>Bogotá, Colombia</span>
+                    {username}
+                    <span>{location}</span>
                 </h2>
             </div>
             <div class="Card-settings">
@@ -131,12 +138,12 @@
         </div>
         <div class="Card-photo">
             <figure>
-                <img src="https://scontent.fmex18-1.fna.fbcdn.net/v/t1.6435-9/131640318_1743620212463980_7669679555384342514_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=vP4ngVdlhvEAX_3qqKL&_nc_ht=scontent.fmex18-1.fna&oh=2c596e2900c636897e0dc2d4b8606249&oe=61D59C54" alt="">
+                <img src={photo} alt={username}>
             </figure>
         </div>
         <div class="Card-icons">
             <div class="Card-icons-firts">
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart active-like"></i>
                 <i class="fas fa-paper-plane"></i>
             </div>
             <div class="Card-icons-second">
@@ -144,10 +151,10 @@
             </div>
         </div>
         <div class="Card-description">
-            <h3>Elmo.pug</h3>
-            <span>Hola!</span>
+            <h3>{username}</h3>
+            <span>{postComment}</span>
         </div>
 
-        <Comments />
+        <Comments {comments} />
     </div>
 </div>

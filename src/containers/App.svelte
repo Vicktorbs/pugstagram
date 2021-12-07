@@ -1,8 +1,18 @@
 <script>
+    import { onMount } from 'svelte'
     import Header from '../components/Header.svelte'
     import Main from '../components/Main.svelte'
     import Sidebar from '../components/Sidebar.svelte'
     import TimeLine from '../components/TimeLine.svelte'
+
+    let data = {};
+    const API = 'https://kittygram-api.vercel.app/'
+    // const API = 'https://dog.ceo/api/breeds/image/random/5'
+    onMount(async () =>  {
+        const response = await fetch(API);
+        data = await response.json();
+        console.log(data);
+    })
 </script>
 
 <style>
@@ -24,6 +34,6 @@
 
 <Header />
 <Main>
-    <TimeLine />
-    <Sidebar />
+    <TimeLine posts={ data.posts } />
+    <Sidebar {...data.user} />
 </Main>
